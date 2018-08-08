@@ -202,10 +202,14 @@ export default class SiderMenu extends PureComponent {
   };
 
   handleOpenChange = openKeys => {
-    const lastOpenKey = openKeys[openKeys.length - 1];
-    const moreThanOne = openKeys.filter(openKey => this.isMainMenu(openKey)).length > 1;
+    // console.log('handleOpenChange',openKeys);
+    // const lastOpenKey = openKeys[openKeys.length - 1];
+    // const moreThanOne = openKeys.filter(openKey => this.isMainMenu(openKey)).length > 1;
+    // this.setState({
+    //   openKeys: moreThanOne ? [lastOpenKey] : [...openKeys],
+    // });
     this.setState({
-      openKeys: moreThanOne ? [lastOpenKey] : [...openKeys],
+      openKeys,
     });
   };
 
