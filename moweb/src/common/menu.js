@@ -6,10 +6,6 @@ const menuData = [
     icon: 'laptop',
     path: 'workplace',
   },
-  // 系统配置： 场馆、场地、会员卡种类、课程种类。
-  // 会员管理： 会员、会员管理。
-  // 员工管理：工作人员、教师。
-  // 课程管理：排课、预约。
   {
     name: '课程管理',
     icon: 'calendar',
