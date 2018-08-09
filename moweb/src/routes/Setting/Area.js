@@ -345,7 +345,7 @@ export default class TableList extends PureComponent {
           <Fragment>
             <a href="">修改</a>
             <Divider type="vertical" />
-            <a href="">删除</a>
+            <a href="">删除</a> 
           </Fragment>
         ),
       },
