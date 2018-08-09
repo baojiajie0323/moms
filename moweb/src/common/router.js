@@ -78,6 +78,12 @@ export const getRouterData = app => {
     '/setting/area': {
       component: dynamicWrapper(app, ['area'], () => import('../routes/Setting/Area')),
     },
+    '/setting/domain': {
+      component: dynamicWrapper(app, ['domain'], () => import('../routes/Setting/Domain')),
+    },
+    '/setting/membercard': {
+      component: dynamicWrapper(app, ['membercard'], () => import('../routes/Setting/Membercard')),
+    },
 
     '/dashboard/analysis': {
       component: dynamicWrapper(app, ['chart'], () => import('../routes/Dashboard/Analysis')),

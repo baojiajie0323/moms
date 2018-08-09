@@ -14,6 +14,7 @@ import {
   Menu,
   InputNumber,
   DatePicker,
+  List,
   Modal,
   message,
   Badge,
@@ -24,7 +25,7 @@ import {
 import StandardTable from 'components/StandardTable';
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 
-import styles from './Area.less';
+import styles from './Membercard.less';
 
 const FormItem = Form.Item;
 const { Option } = Select;
@@ -82,16 +83,16 @@ const CreateForm = Form.create()(props => {
   );
 });
 
-@connect(({ rule, loading }) => ({
-  rule,
-  loading: loading.models.rule,
+@connect(({ domain, loading }) => ({
+  domain,
+  loading: loading.models.list,
 }))
 @Form.create()
-export default class Area extends PureComponent {
+export default class Membercard extends PureComponent {
   state = {
     modalVisible: false,
-    selectedRows: [],
     formValues: {},
+    brand: null,
   };
 
   componentDidMount() {
@@ -184,6 +185,12 @@ export default class Area extends PureComponent {
     });
   };
 
+  onClickAddBrand = () =>{
+    this.setState({
+      brandVisible: true,
+    })
+  }
+
   renderForm() {
     const { form } = this.props;
     const { getFieldDecorator } = form;
@@ -225,12 +232,29 @@ export default class Area extends PureComponent {
     );
   }
 
+  getHeadContent() {
+    var { brand } = this.state;
+    return brand ? <fragement /> : (
+      <Button
+        type="dashed"
+        style={{
+          width: '100%',
+          marginBottom: 8,
+          height: '80px'
+        }}
+        onClick={this.onClickAddBrand}
+        icon="plus">
+        您还没有设置品牌，请先添加品牌
+      </Button>
+    )
+  }
+
   render() {
     const {
-      rule: { data },
+      domain: { list },
       loading,
     } = this.props;
-    const { selectedRows, modalVisible } = this.state;
+    const { modalVisible } = this.state;
 
     const columns = [
       {
@@ -275,18 +299,38 @@ export default class Area extends PureComponent {
     };
 
     return (
-      <PageHeaderLayout title="场地管理">
-        <Card bordered={false}>
-          <div className={styles.tableList}>
-            <div className={styles.tableListForm}>{this.renderForm()}</div>
-            <div className={styles.tableListOperator}>
-              <Button icon="plus" type="primary" onClick={() => this.handleModalVisible(true)}>
-                添加场地
-              </Button>
-            </div>
-            <Table loading={loading} dataSource={[]} columns={columns} />
-          </div>
-        </Card>
+      <PageHeaderLayout title="场馆管理" content={this.getHeadContent()}>
+        <div className={styles.cardList}>
+          <List
+            rowKey="id"
+            loading={loading}
+            grid={{ gutter: 24, lg: 3, md: 2, sm: 1, xs: 1 }}
+            dataSource={['', ...list]}
+            renderItem={item =>
+              item ? ( 
+                <List.Item key={item.id}>
+                  <Card hoverable className={styles.card} actions={[<a>操作一</a>, <a>操作二</a>]}>
+                    <Card.Meta
+                      avatar={<img alt="" className={styles.cardAvatar} src={item.avatar} />}
+                      title={<a href="#">{item.title}</a>}
+                      description={
+                        <Ellipsis className={styles.item} lines={3}>
+                          {item.description}
+                        </Ellipsis>
+                      }
+                    />
+                  </Card>
+                </List.Item>
+              ) : (
+                  <List.Item>
+                    <Button type="dashed" className={styles.newButton}>
+                      <Icon type="plus" /> 添加场馆
+                  </Button>
+                  </List.Item>
+                )
+            }
+          />
+        </div>
         <CreateForm {...parentMethods} modalVisible={modalVisible} />
       </PageHeaderLayout>
     );

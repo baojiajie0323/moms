@@ -66,11 +66,11 @@ const menuData = [
       },
       {
         name: '会员卡种类',
-        path: 'membercard_category',
+        path: 'membercard',
       },
       {
         name: '课程种类',
-        path: 'course_category',
+        path: 'course',
       },
     ],
   },
