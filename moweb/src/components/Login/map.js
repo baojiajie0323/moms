@@ -8,12 +8,12 @@ const map = {
     props: {
       size: 'large',
       prefix: <Icon type="user" className={styles.prefixIcon} />,
-      placeholder: 'admin',
+      placeholder: '请输入手机号',
     },
     rules: [
       {
         required: true,
-        message: 'Please enter username!',
+        message: '请输入手机号!',
       },
     ],
   },
@@ -23,12 +23,12 @@ const map = {
       size: 'large',
       prefix: <Icon type="lock" className={styles.prefixIcon} />,
       type: 'password',
-      placeholder: '888888',
+      placeholder: '请输入密码',
     },
     rules: [
       {
         required: true,
-        message: 'Please enter password!',
+        message: '请输入密码!',
       },
     ],
   },
@@ -37,16 +37,16 @@ const map = {
     props: {
       size: 'large',
       prefix: <Icon type="mobile" className={styles.prefixIcon} />,
-      placeholder: 'mobile number',
+      placeholder: '请输入手机号',
     },
     rules: [
       {
         required: true,
-        message: 'Please enter mobile number!',
+        message: '请输入手机号',
       },
       {
         pattern: /^1\d{10}$/,
-        message: 'Wrong mobile number format!',
+        message: '请输入正确的的手机号',
       },
     ],
   },
@@ -55,12 +55,12 @@ const map = {
     props: {
       size: 'large',
       prefix: <Icon type="mail" className={styles.prefixIcon} />,
-      placeholder: 'captcha',
+      placeholder: '请输入验证码',
     },
     rules: [
       {
         required: true,
-        message: 'Please enter Captcha!',
+        message: '请输入验证码!',
       },
     ],
   },

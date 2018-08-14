@@ -21,6 +21,7 @@ export default {
       });
       // Login successfully
       if (response.status === 'ok') {
+        console.log('login success')
         reloadAuthorized();
         const urlParams = new URL(window.location.href);
         const params = getPageQuery();
